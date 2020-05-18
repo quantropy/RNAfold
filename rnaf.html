@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <script src="nuss.js" type="text/javascript"></script>
+<script>
+function startP(){
+  var table1=document.getElementById("table1");
+  table1.innerHTML='';
+  var num=document.querySelector('input[name="NUM"]:checked').value;
+  var procno=1*document.getElementById("FWD").checked+2*num-1;
+  result=fold(document.getElementById("ta").value,procno)
+  document.getElementById("solution").innerHTML=result.y+'<br>'+structure.join('').slice(1);
+  N2table(table1);
+}
+
+function gofwd(){
+var eld=document.getElementById("DDD");
+var elf=document.getElementById("FWD");
+eld.enabled=!elf.checked;
+if (eld.checked&&!eld.enabled)document.getElementById("L2R").checked=true;
+}
+
+
+</script>
+<style>
+  body {
+  background-color: black;
+  color:white;
+}
+</style>
+</head>
+<body>
+  <div>
+  <textarea rows="4" cols="150" id='ta' selected="selected" >L0,S,GGAGCCC</textarea>
+</div>
+<input type="radio" name="NUM" id="DDD" value="1">Bottom-up (i.e. from diagonal)
+<input type="radio" name="NUM" id="L2R" value="2" checked>Left-to-Right
+<input type="radio" name="NUM" id="PUSH" value="3">Start with (<br>
+<input type="radio" name="FWD" id="BWD" onclick="gofwd()" checked>Backward search<input type="radio" name="FWD" id="FWD" onclick="gofwd()">Forward Propagate<br>
+
+<!--select id="proclist" name="proclist">
+  <option value="L2R1">L2R1A</option>
+  <option value="D1">D1A</option>
+  <option value="L2R2">L2R2A</option>
+  <option value="D2">D2A</option>
+  <option value="L2R1">L2R1B</option>
+  <option value="D1">D1B</option>
+  <option value="L2R2">L2R2B</option>
+  <option value="D2">D2B</option>
+</select>
+<dl>
+  <dt>L2R1A</dt>
+    <dd>Left to right, working out best predecessor for each item</dd>
+    <dt>L2R2A</dt>
+    <dd>Left to right, putting data in successor for each item </dd>
+    <dt>D1A</dt>
+    <dd>Bottom-up (i.e. working from diagonal), working out best predecessor for each item</dd>
+    <dt>D2A</dt>
+    <dt>L2R1B</dt>
+    <dd>Left to right, working out best predecessor for each item</dd>
+    <dt>L2R2B</dt>
+    <dd>Left to right, putting data in successor for each item </dd>
+    <dt>D1B</dt>
+    <dd>Bottom-up (i.e. working from diagonal), working out best predecessor for each item</dd>
+    <dt>D2B</dt>
+</dl-->
+  <input id="runP" value="Run Script" onclick="startP();" type="button">
+  <div id="solution" style='font-family:monospace'>&nbsp;</div>
+  <table id="table1" border=1 cellspacing=0>
+    </table>
+</body>
+</html>
